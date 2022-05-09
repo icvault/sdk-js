@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {},
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "repository": {
@@ -21,5 +20,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "keywords": ["icvault", "dfinity", "motoko", "icvault-sdk", "sdk-js"]
 }
