@@ -36,13 +36,13 @@ class Vault {
     this.actor = actor;
   }
 
-  createVault(title, description) {
-    const payload = {
-      title,
-      description,
+  createVault(payload) {
+    const data = {
+      title: payload.title,
+      description: payload.description,
     };
 
-    return this.actor.createVault(payload);
+    return this.actor.createVault(data);
   }
 
   updateVaultById(id, updates) {
@@ -94,20 +94,25 @@ class Vault {
     return this.actor.deleteCredentialById(id);
   }
 
-  getCredentialsByVaultIds(ids, page, size) {
-    return this.actor.getCredentialsByVaultIds(ids, page, size);
+  getCredentialsByVaultIds(payload) {
+    const data = {
+      ids: payload.ids,
+      page: payload.page,
+      size: payload.size,
+    };
+    return this.actor.getCredentialsByVaultIds(data);
   }
 
   getCredentialsByDomain(domain) {
     return this.actor.getCredentialsByDomain(domain);
   }
 
-  createProject(name, description) {
-    const payload = {
-      name,
-      description,
+  createProject(payload) {
+    const data = {
+      name: payload.name,
+      description: payload.description,
     };
-    return this.actor.createProject(payload);
+    return this.actor.createProject(data);
   }
 
   updateProjectById(id, updates) {
@@ -152,8 +157,13 @@ class Vault {
     return this.actor.deleteSecretById(id);
   }
 
-  getSecretsByProjectId(id, page, size) {
-    return this.actor.getSecretsByProjectId(id, page, size);
+  getSecretsByProjectId(payload) {
+    const data = {
+      id: payload.id,
+      page: payload.page,
+      size: payload.size,
+    };
+    return this.actor.getSecretsByProjectId(data);
   }
 
   getMySecrets() {
