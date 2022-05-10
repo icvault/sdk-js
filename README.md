@@ -30,7 +30,7 @@ const icVaultInstance = new Vault();
 //use async function for this:
 await icVaultInstance.initIdentity("----Private-key----");
 
-icVaultInstance.getVaultList(); //to fetch all vault list owned by user.
+icVaultInstance.getVaultListRequest(); //to fetch all vault list owned by user.
 ```
 
 ## Example:
@@ -44,7 +44,7 @@ const icVaultInstance = new Vault();
 
 const main = async () => {
   await icVaultInstance.initIdentity(identity);
-  const vaultList = await icVaultInstance.getVaultList();
+  const vaultList = await icVaultInstance.getVaultListRequest();
   console.log(vaultList); //logs list of vaults
 };
 
