@@ -9,8 +9,8 @@ global.fetch = fetch;
 const { Actor, HttpAgent } = agent;
 
 class Vault {
-  constructor(host = "https://ic0.app") {
-    this.canisterId = "qgxzx-lqaaa-aaaaj-aaltq-cai";
+  constructor(host = "https://ic0.app", canisterId) {
+    this.canisterId = canisterId ? canisterId : "qgxzx-lqaaa-aaaaj-aaltq-cai";
     this.actor = null;
     this.agent = null;
     this.identity = null;
@@ -36,137 +36,127 @@ class Vault {
     this.actor = actor;
   }
 
-  createVaultRequest(payload) {
-    const data = {
+  createVault(payload) {
+    const createVaultRequest = {
       title: payload.title,
       description: payload.description,
     };
 
-    return this.actor.createVault(data);
+    return this.actor.createVault(createVaultRequest);
   }
 
-  updateVaultByIdRequest(id, updates) {
-    const payload = {
+  updateVaultById(id, updates) {
+    const updateVaultRequest = {
       title: updates.title,
       description: updates.description,
     };
 
-    return this.actor.updateVaultById(id, payload);
+    return this.actor.updateVaultById(id, updateVaultRequest);
   }
 
-  getVaultListRequest() {
+  getVaultList() {
     return this.actor.getVaultList();
   }
 
-  getVaultByIdRequest(id) {
+  getVaultById(id) {
     return this.actor.getVaultById(id);
   }
 
-  addCredentialRequest(req) {
-    const payload = {
-      url: req.url || "",
-      title: req.title || "",
-      username: req.username || "",
-      password: req.password || "",
-      vaultId: req.vaultId,
-      note: req.note || "",
+  addCredential(addCredentialRequest) {
+    const updatePayload = {
+      url: addCredentialRequest.url || "",
+      title: addCredentialRequest.title || "",
+      username: addCredentialRequest.username || "",
+      password: addCredentialRequest.password || "",
+      vaultId: addCredentialRequest.vaultId,
+      note: addCredentialRequest.note || "",
     };
-    return this.actor.addCredential(payload);
+    return this.actor.addCredential(updatePayload);
   }
 
-  updateCredentialByIdRequest(id, updates) {
-    const payload = {
-      url: updates.url || "",
-      title: updates.title || "",
-      username: updates.username || "",
-      password: updates.password || "",
-      vaultId: updates.vaultId,
-      note: updates.note || "",
+  updateCredentialById(id, updateCredentialRequest) {
+    const updatePayload = {
+      url: updateCredentialRequest.url || "",
+      title: updateCredentialRequest.title || "",
+      username: updateCredentialRequest.username || "",
+      password: updateCredentialRequest.password || "",
+      vaultId: updateCredentialRequest.vaultId,
+      note: updateCredentialRequest.note || "",
     };
-    return this.actor.updateCredentialById(id, payload);
+    return this.actor.updateCredentialById(id, updatePayload);
   }
 
-  deleteCredentialByIdRequest(id) {
+  deleteCredentialById(id) {
     return this.actor.deleteCredentialById(id);
   }
 
-  getCredentialsByVaultIdsRequest(payload) {
-    const data = {
-      ids: payload.ids,
-      page: payload.page,
-      size: payload.size,
-    };
-    return this.actor.getCredentialsByVaultIds(data);
+  getCredentialsByVaultIds(ids, page, size) {
+    return this.actor.getCredentialsByVaultIds(ids, page, size);
   }
 
-  getCredentialsByDomainRequest(domain) {
+  getCredentialsByDomain(domain) {
     return this.actor.getCredentialsByDomain(domain);
   }
 
-  createProjectRequest(payload) {
-    const data = {
-      name: payload.name,
-      description: payload.description,
+  createProject(createProjectRequest) {
+    const projectCreatePayload = {
+      name: createProjectRequest.name,
+      description: createProjectRequest.description,
     };
-    return this.actor.createProject(data);
+    return this.actor.createProject(projectCreatePayload);
   }
 
-  updateProjectByIdRequest(id, updates) {
-    const payload = {
-      name: updates.name,
-      description: updates.description,
+  updateProjectById(id, updateProjectRequest) {
+    const updateProjectPayload = {
+      name: updateProjectRequest.name,
+      description: updateProjectRequest.description,
     };
-    return this.actor.updateProjectById(id, payload);
+    return this.actor.updateProjectById(id, updateProjectPayload);
   }
 
-  getProjectListRequest() {
+  getProjectList() {
     return this.actor.getProjectList();
   }
 
-  getProjectByIdRequest(id) {
+  getProjectById(id) {
     return this.actor.getProjectById(id);
   }
 
-  getProjectByIdRequest(id) {
+  getProjectById(id) {
     return this.actor.getProjectById(id);
   }
 
-  addSecretRequest(data) {
-    const payload = {
-      key: data.key,
-      value: data.value,
-      projectId: data.projectId,
+  addSecret(addSecretRequest) {
+    const addSecretPayload = {
+      key: addSecretRequest.key,
+      value: addSecretRequest.value,
+      projectId: addSecretRequest.projectId,
     };
-    return this.actor.addSecret(payload);
+    return this.actor.addSecret(addSecretPayload);
   }
 
-  updateSecretByIdRequest(id, updates) {
-    const payload = {
-      key: updates.key,
-      value: updates.value,
-      projectId: updates.projectId,
+  updateSecretById(id, updateSecretRequest) {
+    const updateSecretPayload = {
+      key: updateSecretRequest.key,
+      value: updateSecretRequest.value,
+      projectId: updateSecretRequest.projectId,
     };
-    return this.actor.updateSecretById(id, payload);
+    return this.actor.updateSecretById(id, updateSecretPayload);
   }
 
-  deleteSecretByIdRequest(id) {
+  deleteSecretById(id) {
     return this.actor.deleteSecretById(id);
   }
 
-  getSecretsByProjectIdRequest(payload) {
-    const data = {
-      id: payload.id,
-      page: payload.page,
-      size: payload.size,
-    };
-    return this.actor.getSecretsByProjectId(data);
+  getSecretsByProjectId(ids, page, size) {
+    return this.actor.getSecretsByProjectId(ids, page, size);
   }
 
-  getMySecretsRequest() {
+  getMySecrets() {
     return this.actor.getMySecrets();
   }
 
-  getSecretByKeyRequest(key, projectId) {
+  getSecretByKey(key, projectId) {
     return this.actor.getSecretByKey(key, projectId);
   }
 }
