@@ -129,6 +129,7 @@ export const idlFactory = ({ IDL }) => {
     addSecret: IDL.Func([CreateSecretPayload], [Result_10], []),
     createProject: IDL.Func([CreateProjectPayload], [Result_10], []),
     createVault: IDL.Func([CreateVaultReq], [Result_10], []),
+    deleteAllData: IDL.Func([], [IDL.Bool], []),
     deleteCredentialById: IDL.Func([IDL.Text], [Result], []),
     deleteSecretById: IDL.Func([IDL.Text], [Result], []),
     getCredentialsByDomain: IDL.Func([IDL.Text], [Result_9], ["query"]),
@@ -140,7 +141,7 @@ export const idlFactory = ({ IDL }) => {
     getMyCredentials: IDL.Func([IDL.Nat, IDL.Nat], [Result_8], ["query"]),
     getMySecrets: IDL.Func([], [Result_7], ["query"]),
     getProjectById: IDL.Func([IDL.Text], [Result_6], ["query"]),
-    getProjectList: IDL.Func([], [Result_5], ["query"]),
+    getProjectList: IDL.Func([], [Result_5], []),
     getSecretByKey: IDL.Func([IDL.Text, IDL.Text], [Result_4], ["query"]),
     getSecretsByProjectId: IDL.Func(
       [IDL.Text, IDL.Nat, IDL.Nat],
@@ -148,7 +149,7 @@ export const idlFactory = ({ IDL }) => {
       ["query"]
     ),
     getVaultById: IDL.Func([IDL.Text], [Result_2], ["query"]),
-    getVaultList: IDL.Func([], [Result_1], ["query"]),
+    getVaultList: IDL.Func([], [Result_1], []),
     updateCredentialById: IDL.Func([IDL.Text, UpdateCredObj], [Result], []),
     updateProjectById: IDL.Func([IDL.Text, CreateProjectPayload], [Result], []),
     updateSecretById: IDL.Func([IDL.Text, UpdateSecretPayload], [Result], []),
